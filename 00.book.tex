@@ -107,29 +107,60 @@ Data objek pajak PBB-P2 ini pun akan tidak terlihat perubahannya apabila data ya
 
 Dari beberapa permasalahan yang timbul pada sistem pencatatan administrasi secara manual di atas, peluang yang ditawarkan sistem aplikasi web yang baru yaitu data nantinya akan disimpan di \textit{server}. Sehingga dengan aplikasi yang dibangun, data dapat diakses bersama bahkan dapat dilakukan \textit{entry} bersama.
 
-Pada saat pengambilan data NJOP PBB-P2, dilakukan secara langsung pada basis data SISMIOP, sehingga perubahan-perubahan yang dilakukan pada saat itu, dapat langsung diterima sebagai nilai pembanding pada perolehan BPHTB.
+Pada saat pengambilan data NJOP PBB-P2, dilakukan secara langsung pada basis data SISMIOP, sehingga perubahan-perubahan yang dilakukan pada saat itu, dapat langsung diterima sebagai nilai pembanding pada perolehan BPHTB. Satu keunggulan dan peluang dari data terpusat ini, nantinya dapat diperluas aksesnya untuk keperluan yang lain, misalkan membuat modul terpisah untuk kemudian dapat berkomunikasi dengan aplikasi web yang lain, atau mungkin aplikasi berbentuk \textit{mobile} yang sekarang dikenal dengan \textit{smartphone} dengan tujuan, salah satu contohnya adalah memberitahu masyarakat wajib pajak atau kuasanya bahwa berkas pelayanan yang pernah diajukan untuk diproses verifikasi BPHTB sudah dapat diambil, atau mungkin memiliki kendala lain seperti cek lapangan, atau kekurangan berkas sehingga berkas tertunda prosesnya.
 
+Hal-hal tersebut tentu saja merupakan salah satu bentuk komunikasi antara Pemerintah Daerah dalam hal ini Dinas Pendapatan dan Pengelolaan Keuangan dengan masyarakat Wajib Pajak atau Kuasanya dalam pengurusan berkas BPHTB. Dan memungkinkan pula bahwa hasil dari modul tersebut dapat meningkatkan produktifitas baik dari Dinas Pendapatan dan Pengelolaan Keuangan dalam pengurusan berkas verifikasi BPHTB, maupun dari sisi masyarakat wajib pajak yang tidak perlu berulang kali mengunjungi tempat pelayanan hanya untuk memastikan apakah berkas yang pernah diajukan sudah selesai untuk diverifikasi atau belum.
+
+Data pada \textit{harddisk} server pun diamankan dengan cara redundansi data yang dilakukan otomatis oleh \textit{controller array} yang sudah dimiliki server, sehingga apabila ada kerusakan di salah satu \textit{harddisk} maka \textit{harddisk} yang lain akan menangani simpanan datanya sampai \textit{harddisk} yang rusak diganti dengan yang baru.
 
 \section{PEMBENTUKAN SASARAN SISTEM BARU SECARA KESELURUHAN}
 
+Sasaran yang akan dituju oleh sistem yang baru dibuat nantinya adalah yang utama menggantikan sistem pencatatan manual yang tadinya dilakukan dengan Microsoft Office Excel, nantinya digantikan dengan menggunakan aplikasi khusus yang dibangun untuk melakukan pencatatan administrasi BPHTB.
+
+Sistem yang baru harus mampu menyediakan data-data dari basis data SISMIOP secara \textit{real time} untuk keperluan data pembanding pada nilai peralihan BPHTB. 
+
+Sistem yang baru harus dapat memproduksi hasil keluaran sesuai seperti apa yang dilakukan pada pencatatan administrasi BPHTB secara manual. Hal ini diperlukan agar tidak ada perbedaan secara hasil keluaran, tetapi dapat mempercepat proses pencatatan.
 
 \section{PENGIDENTIFIKASIAN PARA PEMAKAI SISTEM}
 
+Pengguna sistem yang baru tentu saja dari fungsi pelayanan BPHTB yang melakukan serah terima berkas dengan masyarakat wajib pajak atau kuasanya, terlebih bila ada petugas entry data pun dapat menggunakan sistem ini secara bersama.
 
 \section{PEMBENTUKAN LINGKUP SISTEM}
 
+Karena luasnya hal yang dapat ditangani oleh aplikasi web yang dibangun berdasarkan kebutuhan, maka lingkup sistem untuk membangun aplikasi ini akan dibatasi hanya pada melakukan pencatatan administrasi dan memproduksi berkas-berkas yang diperlukan pada proses verifikasi BPHTB.
 
 \section{PENGUSULAN PERANGKAT LUNAK DAN PERANGKAT KERAS UNTUK SISTEM BARU}
 
+Kondisi perangkat lunak untuk sistem yang baru akan menggunakan basis data Postgresql yang secara legalitas dapat diperoleh, dipergunakan, dan dikembangkan secara gratis sebagaimana tertuang dalam lisensinya.
+
+Untuk web server akan menggunakan Apache Tomcat yang juga gratis untuk digunakan dan bebas dikembangkan sebagaimana tertuang dalam lisensinya.
+
+Perangkat lunak lain yang digunakan adalah \textit{Integrated Development Environtment} (IDE) Eclipse, ini adalah alat yang digunakan untuk membangun aplikasi dan dapat digunakan secara gratis sebagaimana tertuang dalam lisensinya.
+
+Diperlukan perangkat IDE karena aplikasi akan dibangun dalam lingkungan Java menggunakan framework ZKoss tipe Community Edition, seperti perangkat lunak yang lain, untuk edisi ini pun kita dapat menggunakannya secara gratis.
+
+Sedangkan untuk perangkat keras dimana sistem baru akan dipasang dapat menggunakan server BILLER yang hanya digunakan untuk melakukan rekonsiliasi nilai penerimaan PBB-P2 secara harian, dan ini pun hanya digunakan 1 (satu) kali dalam sehari. Sehingga untuk menggunakan perangkat keras server ini sangat memungkinkan.
 
 \section{PEMBUATAN ANALISIS UNTUK MEMBUAT ATAU MEMBELI APLIKASI}
 
+Keputusan untuk membeli atau membuat tentu menjadi perhatian tersendiri. Beberapa hal yang perlu diperhatikan dalam membeli aplikasi tentu saja akan melihat faktor tenggang waktu, kualitas, dan layanan yang diberikan. 
 
-\section{PEMBUATAN ANALISIS BIAYA/MANFAAT}
+Dari sisi tenggang waktu, apakah sistem yang dibangun dapat diselesaikan secepat hitungan beberapa bulan saja, atau beberapa minggu saja. Tentunya faktor tenggang waktu akan mempengaruhi hasil kualitas yang didapat, biasanya dengan waktu yang cepat, akan didapat kualitas aplikasi yang kurang, mulai dari \textit{bugs} yang cukup banyak, atau mungkin kesalahan yang cukup fatal bisa diproduksi.
+
+Dari sisi layanan sebetulnya kearah layanan jasa, apakah kita akan menggunakan sistem kontrak putus, artinya begitu satu sistem sudah jadi, terpasang, dan siap digunakan pada fase produksi, maka ditunjuk 1 (satu) atau lebih orang untuk melakukan pemeliharaan dasar, atau bahkan diserahterimakan kode program untuk kemudian dapat dipeliharan dan dikembangkan mandiri secara internal, atau menggunakan sistem perpanjangan layanan jasa, seperti apabila dirasa ada yang kurang tepat, maka pihak ke-3 akan segera memperbaiki, dan selama kita menggunakan aplikasi tersebut, harus selalu mengeluarkan biaya secara rutin (yang biasanya setiap bulan) untuk melakukan pemeliharaan sistem.
+
+Atau dengan pertimbangan lain adalah membuat aplikasi sendiri karena kita memiliki seorang fungional Pranata Komputer yang tugas pokok dan fungsinya memang dapat membangun suatu sistem aplikasi, tanpa mengeluarkan biaya tambahan yang biasanya cukup besar, namun tentunya waktu yang dibutuhkan lebih lama dari membeli aplikasi.
+
+%\section{PEMBUATAN ANALISIS BIAYA/MANFAAT}
 
 
 \section{PENGKAJIAN TERHADAP RESIKO PROYEK}
 
+Tentu saja untuk setiap proyek yang berjalan pasti memiliki resiko, yang apabila dapat ditangani dengan benar, bisa menjadi nilai tambah tersendiri terhadap proyek yang akan berlangsung.
+
+Dalam kondisi pembangunan sistem pelayanan BPHTB ini resiko operasional yang mungkin kerap kita jumpai, yaitu adanya perpindahan fungsi petugas yang melakukan pelayanan, sehingga nantinya perlu dibentuk buku panduan untuk mengoperasionalkan aplikasi yang dimaksud.
+
+Resiko yang lain yang mungkin timbul adalah Hazard Risk, atau resiko terkait kecelakaan fisik seperti kebakaran dan gempa bumi, yang solusinya adalah seluruh kode sistem dan desain proyek aplikasi sistem web ini disimpan di server luar (github.com) sehingga kode aman untuk dilakukan modifikasi atau inisialisasi ulang.
 
 \section{PEMBERIAN REKOMENDASI UNTUK MENERUSKAN ATAU MENGHENTIKAN PROYEK}
 
